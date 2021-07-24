@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Picker, StyleSheet, Text, View} from 'react-native';
+import {Picker, StyleSheet, Text, TextInput, View} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Button, DataTable} from 'react-native-paper';
@@ -46,30 +46,46 @@ export default function Register({navigation}: Props) {
     }
 
     return (
-        <View>
-            <Text>Register</Text>
+        <View style={{backgroundColor: "rgba(26, 238, 2, 0.3)", flex: 1}}>
 
-            <DataTable style={{borderWidth: 2, borderLeftWidth: 0, borderRightWidth: 0, borderColor: "#FC5C7D"}}>
+            <DataTable style={{flex: 1}}>
                 <Field text="Name" value={name} onChangeText={(value) => setName(value)}/>
                 <Field text="Address" value={address} onChangeText={(value) => setAddress(value)}/>
 
-                <DataTable.Row>
-                    <DataTable.Cell style={{flex: 1}}><Text style={styles.paragraph}>Sex</Text></DataTable.Cell>
+                <DataTable.Row style={{flex: 1}}>
+                    <DataTable.Cell><Text
+                        style={{fontWeight: "bold", fontSize: 18}}>Sex</Text></DataTable.Cell>
                     <Picker
                         selectedValue={sex}
-                        style={{height: 50, width: 180}}
-                        onValueChange={(itemValue, itemIndex) => setSex(itemValue)}>
-                        <Picker.Item label="Rather not say" value={"None"}/>
-                        <Picker.Item label="Male" value="M"/>
-                        <Picker.Item label="Female" value="F"/>
+                        style={{flex: 2, fontSize: 10, borderRadius: 5, borderColor: '#000', borderStyle: "solid"}}
+                        onValueChange={(itemValue, itemIndex) => setSex(itemValue)}
+                    >
+                        <Picker.Item label="Rather not say" value="None"/>
+                        <Picker.Item label="Male" value="Male"/>
+                        <Picker.Item label="Female" value="Female"/>
                     </Picker>
                 </DataTable.Row>
 
-                <Field text="Number" value={number} onChangeText={(value) => setNumber(value)}/>
+                <DataTable.Row style={{flex: 1, margin: 20, marginRight: 0}}>
+                    <DataTable.Cell><Text
+                        style={{fontWeight: "bold", fontSize: 18}}>Number</Text></DataTable.Cell>
+
+                    <TextInput style={{
+                        flex: 2,
+                        marginBottom: 10,
+                        paddingLeft: 3,
+                        backgroundColor: "#ffffff",
+                        borderRadius: 5,
+                        color: "#000"
+                    }} value={number} onChangeText={(value) => setNumber(value)} keyboardType="number-pad"/>
+                </DataTable.Row>
+                {/*<Field text="Number" value={number} onChangeText={(value) => setNumber(value)}/>*/}
                 <Field text="E-Mail" value={email} onChangeText={(value) => setEmail(value)}/>
 
             </DataTable>
-            <Button onPress={submit}>Submit</Button>
+            <Button icon="check" mode="contained"
+                    style={{padding: "3%", marginLeft: '10%', marginRight: '10%', margin: "3%"}}
+                    onPress={submit}>Submit</Button>
         </View>
     )
 }
@@ -77,7 +93,7 @@ export default function Register({navigation}: Props) {
 const styles = StyleSheet.create({
     paragraph: {
         marginBottom: 24,
-        marginTop: 0,
+        margin: 2,
         fontSize: 14,
         fontWeight: 'bold',
         textAlign: 'center',

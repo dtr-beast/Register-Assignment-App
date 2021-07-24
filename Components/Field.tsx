@@ -10,22 +10,23 @@ interface Props {
 
 export default function Field({text, onChangeText, value}: Props) {
     return (
-        <DataTable.Row style={styles.row}>
-            <DataTable.Cell style={{flex: 1}}><Text style={styles.paragraph}>{text}</Text></DataTable.Cell>
+        <DataTable.Row style={{flex: 1, margin:20, marginRight: 0}}>
+            <DataTable.Cell><Text
+                style={{fontWeight: "bold", fontSize: 18}}>{text}</Text></DataTable.Cell>
 
-            <TextInput style={{flex: 2}} value={value} onChangeText={onChangeText}/>
+            <TextInput style={{flex: 2, marginBottom: 10}} value={value} onChangeText={onChangeText} />
         </DataTable.Row>
     )
 }
 
 const styles = StyleSheet.create({
     paragraph: {
-        marginBottom: 24,
-        margin: 2,
-        padding: 10,
-        fontSize: 14,
-        fontWeight: 'bold',
-        textAlign: 'center',
+        // marginBottom: 24,
+        // margin: 30,
+        // fontSize: 25,
+        // fontWeight: 'bold',
+        // textAlign: 'center',
+        // flex: 1
     },
     row: {
         margin: 5,
